@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+IOS_PLATFORM = '11.0'
+
+platform :ios, IOS_PLATFORM
+
+target 'Rick & Morty Characters' do
+	use_frameworks!
+	pod 'Alamofire', '5.4.1'
+  pod 'JGProgressHUD', '2.2.0'
+  pod 'Kingfisher', '5.15.8'
+end

@@ -45,6 +45,14 @@ class ListViewController: UICollectionViewController, UICollectionViewDelegateFl
         return CGSize(width: width, height: width)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // TODO: Passar isso pra outro lugar
+        guard let selectedCharacter = viewModel.getCharacterFor(index: indexPath.row) else { return }
+        let vc = DetailsViewController(character: selectedCharacter)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+    }
+    
     func displayLoading() {
         loadingView.show(in: self.view, animated: true)
     }

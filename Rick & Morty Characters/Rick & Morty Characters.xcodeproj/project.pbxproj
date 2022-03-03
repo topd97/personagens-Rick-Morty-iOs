@@ -20,6 +20,8 @@
 		E3DD587E27D034B4008E54D8 /* CharacterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3DD587C27D034B4008E54D8 /* CharacterCollectionViewCell.xib */; };
 		E3DD588427D03DB7008E54D8 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DD588327D03DB7008E54D8 /* Array.swift */; };
 		E3DD588627D07FE2008E54D8 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DD588527D07FE2008E54D8 /* UIImageView.swift */; };
+		E3DD588F27D085A0008E54D8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DD588D27D085A0008E54D8 /* DetailsViewController.swift */; };
+		E3DD589027D085A0008E54D8 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3DD588E27D085A0008E54D8 /* DetailsViewController.xib */; };
 		F68087262C0B51BCEDDA5536 /* Pods_Rick___Morty_Characters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57F297B599F39B51445976C /* Pods_Rick___Morty_Characters.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		E3DD587C27D034B4008E54D8 /* CharacterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCollectionViewCell.xib; sourceTree = "<group>"; };
 		E3DD588327D03DB7008E54D8 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		E3DD588527D07FE2008E54D8 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		E3DD588D27D085A0008E54D8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailsViewController.swift; path = "Rick & Morty Characters/Details/View/DetailsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		E3DD588E27D085A0008E54D8 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = "Rick & Morty Characters/Details/View/DetailsViewController.xib"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +134,12 @@
 		E3DD584627D025BB008E54D8 /* Rick & Morty Characters */ = {
 			isa = PBXGroup;
 			children = (
+				E3DD588A27D0854D008E54D8 /* Details */,
+				E3DD588727D08503008E54D8 /* List */,
 				E3DD588227D03DAB008E54D8 /* Extensions */,
 				E3DD587F27D034B9008E54D8 /* Cell */,
 				E3DD584727D025BB008E54D8 /* AppDelegate.swift */,
 				E3DD584927D025BB008E54D8 /* SceneDelegate.swift */,
-				E3DD584B27D025BB008E54D8 /* ListViewController.swift */,
-				E3DD587927D03356008E54D8 /* ListViewModel.swift */,
 				E3DD584D27D025BB008E54D8 /* Main.storyboard */,
 				E3DD585027D025BF008E54D8 /* Assets.xcassets */,
 				E3DD585227D025BF008E54D8 /* LaunchScreen.storyboard */,
@@ -169,6 +173,56 @@
 				E3DD588527D07FE2008E54D8 /* UIImageView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E3DD588727D08503008E54D8 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				E3DD588927D08511008E54D8 /* View Model */,
+				E3DD588827D0850B008E54D8 /* View */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		E3DD588827D0850B008E54D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3DD584B27D025BB008E54D8 /* ListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3DD588927D08511008E54D8 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				E3DD587927D03356008E54D8 /* ListViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		E3DD588A27D0854D008E54D8 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E3DD588C27D0855F008E54D8 /* View Model */,
+				E3DD588B27D08558008E54D8 /* View */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		E3DD588B27D08558008E54D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3DD588D27D085A0008E54D8 /* DetailsViewController.swift */,
+				E3DD588E27D085A0008E54D8 /* DetailsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3DD588C27D0855F008E54D8 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +333,7 @@
 			files = (
 				E3DD587E27D034B4008E54D8 /* CharacterCollectionViewCell.xib in Resources */,
 				E3DD585427D025BF008E54D8 /* LaunchScreen.storyboard in Resources */,
+				E3DD589027D085A0008E54D8 /* DetailsViewController.xib in Resources */,
 				E3DD585127D025BF008E54D8 /* Assets.xcassets in Resources */,
 				E3DD584F27D025BB008E54D8 /* Main.storyboard in Resources */,
 			);
@@ -349,6 +404,7 @@
 			files = (
 				E3DD588627D07FE2008E54D8 /* UIImageView.swift in Sources */,
 				E3DD587D27D034B4008E54D8 /* CharacterCollectionViewCell.swift in Sources */,
+				E3DD588F27D085A0008E54D8 /* DetailsViewController.swift in Sources */,
 				E3DD587A27D03356008E54D8 /* ListViewModel.swift in Sources */,
 				E3DD588427D03DB7008E54D8 /* Array.swift in Sources */,
 				E3DD584C27D025BB008E54D8 /* ListViewController.swift in Sources */,

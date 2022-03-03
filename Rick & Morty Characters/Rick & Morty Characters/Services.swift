@@ -12,10 +12,11 @@ class Services {
     
     var baseUrl: String  { return "https://rickandmortyapi.com/api/character" }
     
-    func getRickMortyCharacters(_ completion: @escaping (([RickMortyCharacter]) -> Void)) {
+    func getRickMortyCharacters(page: Int, _ completion: @escaping (([RickMortyCharacter]) -> Void)) {
         AF.request(
             "https://rickandmortyapi.com/api/character",
-            method: .get
+            method: .get,
+            parameters: ["page": page]
         ).response { (response) in
             guard let data = response.data else {
                 // TODO: Handle corner case

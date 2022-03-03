@@ -53,6 +53,24 @@ class ListViewController: UICollectionViewController, UICollectionViewDelegateFl
         present(vc, animated: true, completion: nil)
     }
     
+    override func collectionView(_ collectionView: UICollectionView,
+                     willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if viewModel.getCharactersCount() - 1 == indexPath.row {
+            displayLoading()
+            viewModel.getCharacters()
+        }
+    }
+    
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let height = collectionView.frame.size.height
+//        let contentYoffset = collectionView.contentOffset.y
+//        let distanceFromBottom = collectionView.contentSize.height - contentYoffset
+//        if distanceFromBottom < height {
+//            print("[Thiago] you reached end of the table")
+//        }
+//    }
+    
     func displayLoading() {
         loadingView.show(in: self.view, animated: true)
     }

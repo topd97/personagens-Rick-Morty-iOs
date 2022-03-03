@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="Rick___Morty_Characters" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="yG8-zm-fnG" id="Ah8-gL-uJB"/>
                 <outlet property="imageView" destination="Y9e-b5-Gzg" id="YVJ-eQ-Yqq"/>
                 <outlet property="nameLabel" destination="Mwl-YC-PPn" id="9yj-bw-QvG"/>
                 <outlet property="speciesLabel" destination="iBd-dL-8ER" id="vdZ-Qt-UmR"/>
@@ -24,13 +25,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.badge.clock.rtl" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-b5-Gzg" userLabel="Image">
-                    <rect key="frame" x="81.5" y="84.5" width="249.5" height="138.5"/>
+                    <rect key="frame" x="81.5" y="84.5" width="249.5" height="247.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Y9e-b5-Gzg" secondAttribute="height" multiplier="16:9" id="nqn-4T-9uh"/>
+                        <constraint firstAttribute="width" secondItem="Y9e-b5-Gzg" secondAttribute="height" multiplier="1:1" id="nqn-4T-9uh"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwl-YC-PPn" userLabel="Name">
-                    <rect key="frame" x="100.5" y="238.5" width="213" height="50"/>
+                    <rect key="frame" x="100.5" y="347.5" width="213" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="HA0-gu-i8k"/>
                     </constraints>
@@ -39,37 +40,50 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MRD-qO-fdC">
-                    <rect key="frame" x="48" y="304.5" width="318" height="541.5"/>
+                    <rect key="frame" x="48" y="413.5" width="318" height="61.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBd-dL-8ER" userLabel="Espécie">
-                            <rect key="frame" x="0.0" y="0.0" width="318" height="180.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="318" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr2-PV-Zj8" userLabel="Status">
-                            <rect key="frame" x="0.0" y="180.5" width="318" height="180.5"/>
+                            <rect key="frame" x="0.0" y="20.5" width="318" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lco-gg-edo" userLabel="Tipo">
-                            <rect key="frame" x="0.0" y="361" width="318" height="180.5"/>
+                            <rect key="frame" x="0.0" y="41" width="318" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG8-zm-fnG">
+                    <rect key="frame" x="16" y="60" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="ZwE-Co-l0E"/>
+                        <constraint firstAttribute="width" secondItem="yG8-zm-fnG" secondAttribute="height" multiplier="1:1" id="dET-hl-eZN"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="arrow.left.circle" catalog="system"/>
+                    <connections>
+                        <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="CaP-HY-msl"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemGreenColor"/>
             <constraints>
                 <constraint firstItem="MRD-qO-fdC" firstAttribute="top" secondItem="Mwl-YC-PPn" secondAttribute="bottom" constant="16" id="1qL-m7-3JD"/>
+                <constraint firstItem="yG8-zm-fnG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="6k6-NM-z1h"/>
                 <constraint firstItem="Y9e-b5-Gzg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="8Yq-hn-Tfv"/>
+                <constraint firstItem="yG8-zm-fnG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="C9B-i0-lje"/>
                 <constraint firstItem="Mwl-YC-PPn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="PxW-VI-qmd"/>
                 <constraint firstItem="Mwl-YC-PPn" firstAttribute="top" secondItem="Y9e-b5-Gzg" secondAttribute="bottom" constant="16" id="ReV-LH-DKZ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MRD-qO-fdC" secondAttribute="bottom" constant="16" id="Xol-iO-0du"/>
                 <constraint firstItem="MRD-qO-fdC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="aYn-ZQ-Hac"/>
                 <constraint firstItem="Y9e-b5-Gzg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="39" id="j89-4P-FFk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MRD-qO-fdC" secondAttribute="trailing" constant="48" id="pLn-u6-MoB"/>
@@ -79,6 +93,7 @@
         </view>
     </objects>
     <resources>
+        <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
         <image name="calendar.badge.clock.rtl" catalog="system" width="128" height="108"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

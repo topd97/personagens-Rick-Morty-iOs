@@ -14,15 +14,22 @@ protocol ListViewModelOutput: AnyObject {
 class ListViewModel {
     private var characters: [RickMortyCharacter] = []
     let output: ListViewModelOutput
+    var actualPage: Int = 1
+    var isUpdating = false
     
     init(output: ListViewModelOutput) {
         self.output = output
     }
     
     func getCharacters() {
-        Services.shared.getRickMortyCharacters() { characters in
-            self.characters = characters
-            self.output.charactersHasLoad()
+        if !isUpdating {
+            isUpdating = true
+            Services.shared.getRickMortyCharacters(page: actualPage) { characters in
+                self.isUpdating = false
+                self.actualPage += 1
+                self.characters = characters
+                self.output.charactersHasLoad()
+            }
         }
     }
     

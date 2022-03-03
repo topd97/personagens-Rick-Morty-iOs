@@ -13,6 +13,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var speciesLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var backButton: UIButton!
     
     // passar para o viewModel
     var character: RickMortyCharacter?
@@ -43,5 +44,9 @@ class DetailsViewController: UIViewController {
         imageView.setImage(URL(string: character.image))
         imageView.layer.cornerRadius = 15
     }
-
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

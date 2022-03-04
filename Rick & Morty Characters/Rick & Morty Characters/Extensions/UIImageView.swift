@@ -13,7 +13,7 @@ extension UIImageView {
         if let image = url {
             self.kf.setImage(
                 with: image,
-                placeholder: nil,
+                placeholder: UIImage(named: "CharacterPlaceholder"),
                 options: [.transition(.fade(0.35))]
             )
         } else {

@@ -79,7 +79,25 @@ extension ListViewController: ListViewModelOutput {
     }
     
     func characterNotLoad() {
-        // TODO: Adicionar alert pedindo para tentar novamente
+        DispatchQueue.main.async {
+            if self.loadingView.isVisible {
+                self.hideLoading()
+            }
+            
+            let alert = UIAlertController(title: "Fail to get Characters", message: "It was not possible to get characters, try again later", preferredStyle: .alert)
+            
+            if self.viewModel.getCharactersCount() != 0 {
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] _ in
+                    alert?.dismiss(animated: true, completion: nil)
+                }))
+            }
+            alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { [weak alert] _ in
+                self.viewModel.getCharacters()
+                alert?.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func present(vc: UIViewController) {

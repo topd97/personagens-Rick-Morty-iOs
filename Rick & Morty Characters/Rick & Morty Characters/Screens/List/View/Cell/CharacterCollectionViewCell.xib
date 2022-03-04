@@ -14,8 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="341" height="280"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z64-cs-tne">
-                        <rect key="frame" x="34" y="16.5" width="273" height="181"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z64-cs-tne">
+                        <rect key="frame" x="34" y="16" width="273" height="182"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsl-oU-3NR">
                         <rect key="frame" x="34" y="214" width="273" height="50"/>
@@ -46,7 +46,4 @@
             <point key="canvasLocation" x="345.6521739130435" y="114.50892857142857"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="square.and.arrow.up.circle" catalog="system" width="128" height="121"/>
-    </resources>
 </document>

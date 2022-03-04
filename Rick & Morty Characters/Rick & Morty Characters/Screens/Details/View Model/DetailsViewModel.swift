@@ -7,6 +7,7 @@
 
 protocol DetailsViewModelProtocol: AnyObject {
     func didLoadData()
+    func didFailToLoadEpisodes()
 }
 
 class DetailsViewModel {
@@ -31,17 +32,19 @@ class DetailsViewModel {
     private func getEpisode() {
         guard let character = character else { return }
         Task.init {
+            var didFailSomeEpisodes = false
             for episode in character.episode {
                 do {
                     let episode = try await service.getRickMortyEpisode(url: episode)
                     self.characterEpisodes.append(episode)
                 } catch {
-                    // TODO: Tratar erro da API
-                    // talvez aqui não precise de tratamento, apenas esconder o quadrado caso não tenha nenhum ep
-                    print("erro")
+                    didFailSomeEpisodes = true
                 }
             }
             output?.didLoadData()
+            if didFailSomeEpisodes {
+                output?.didFailToLoadEpisodes()
+            }
         }
     }
     

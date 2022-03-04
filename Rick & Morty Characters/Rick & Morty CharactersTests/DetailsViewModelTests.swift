@@ -11,6 +11,7 @@ import XCTest
 final class DetailsViewModelTests: XCTestCase {
     var viewModel: DetailsViewModel?
     var mock = RickMortyServiceMock()
+    var isLoadDataSuccess = false
     var loadDataSuccess = false
     var expectation: XCTestExpectation!
     let character = RickMortyServiceMock().characters.first
@@ -23,6 +24,7 @@ final class DetailsViewModelTests: XCTestCase {
     
     func testLoadDataSuccess() {
         mock.isSuccess = true
+        isLoadDataSuccess = true
         loadDataSuccess = false
         
         expectation = self.expectation(description: "Test get character load success")
@@ -30,6 +32,18 @@ final class DetailsViewModelTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         
         XCTAssertTrue(loadDataSuccess)
+    }
+    
+    func testLoadDataFail() {
+        mock.isSuccess = false
+        isLoadDataSuccess = false
+        loadDataSuccess = true
+        
+        expectation = self.expectation(description: "Test get character load success")
+        viewModel?.loadData()
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertFalse(loadDataSuccess)
     }
     
     func testGetCharacter() {
@@ -62,8 +76,17 @@ final class DetailsViewModelTests: XCTestCase {
 
 extension DetailsViewModelTests: DetailsViewModelProtocol {
     func didLoadData() {
-        loadDataSuccess = true
-        expectation.fulfill()
+        if isLoadDataSuccess {
+            loadDataSuccess = true
+            expectation.fulfill()
+        }
+    }
+    
+    func didFailToLoadEpisodes() {
+        if !isLoadDataSuccess {
+            loadDataSuccess = false
+            expectation.fulfill()
+        }
     }
 }
 

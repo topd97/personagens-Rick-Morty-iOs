@@ -51,6 +51,10 @@ class RickMortyServiceMock: RickMortyServiceProtocol {
     }
     
     func getRickMortyEpisode(url: String) async throws -> RickMortyEpisode {
-        return episode
+        if isSuccess {
+            return episode
+        } else {
+            throw MyError.connectionError
+        }
     }
 }

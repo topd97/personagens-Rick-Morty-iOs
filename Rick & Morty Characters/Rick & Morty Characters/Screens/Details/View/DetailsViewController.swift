@@ -45,7 +45,7 @@ final class DetailsViewController: UIViewController {
     private func setupView() {
         guard let character = self.viewModel.getCharacter() else { return }
         
-        self.backButton.tintColor = .black
+        self.backButton.tintColor = .white
         self.backButton.configuration?.image = UIImage(systemName: "arrow.backward.circle")
         
         
@@ -90,15 +90,22 @@ final class DetailsViewController: UIViewController {
         self.imageView.layer.borderWidth = 2
         
         self.episodesView.layer.cornerRadius = 15
-        self.episodesView.layer.borderColor = UIColor.black.cgColor
+        self.episodesView.layer.borderColor = UIColor.white.cgColor
         self.episodesView.layer.borderWidth = 2
         
         let episodes = self.viewModel.getCharacterEpisodes()
-        for episode in episodes {
-            let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: textFontSize)
-            label.text = "\(episode.episode) - \(episode.name)"
-            self.episodesStackView.addArrangedSubview(label)
+        if episodes.isEmpty {
+            episodesView.isHidden = true
+        } else {
+            episodesView.isHidden = false
+            
+            for episode in episodes {
+                let label = UILabel()
+                label.font = UIFont.systemFont(ofSize: textFontSize)
+                label.textColor = .white
+                label.text = "\(episode.episode) - \(episode.name)"
+                self.episodesStackView.addArrangedSubview(label)
+            }
         }
     }
     
@@ -122,5 +129,13 @@ extension DetailsViewController: DetailsViewModelProtocol {
             self.hideLoading()
             self.setupView()
         }
+    }
+    
+    func didFailToLoadEpisodes() {
+        let alert = UIAlertController(title: "Fail to get episodes", message: "Some episodes could not be loaded, the episodes list could be incomplete", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] _ in
+            alert?.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }

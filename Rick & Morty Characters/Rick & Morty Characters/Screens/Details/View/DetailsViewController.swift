@@ -14,12 +14,16 @@ final class DetailsViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var speciesLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var originLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var episodesView: UIView!
     @IBOutlet weak var episodesStackView: UIStackView!
     @IBOutlet weak var backButtonImageView: UIImageView!
     
     let viewModel: DetailsViewModel
+    let textFontSize: CGFloat = UIDevice.isPad() ? 32 : 14
     
     private lazy var loadingView = JGProgressHUD()
     
@@ -51,39 +55,13 @@ final class DetailsViewController: UIViewController {
         backButtonImageView.isUserInteractionEnabled = true
         backButtonImageView.addGestureRecognizer(tapContainer)
         
-        
-        let textFontSize: CGFloat = UIDevice.isPad() ? 32 : 14
-
         self.nameLabel.text = character.name
-        if character.status != "" {
-            self.statusLabel.isHidden = false
-            let statusAttributedText = NSMutableAttributedString(string: "Status: ", attributes: [.font: UIFont.boldSystemFont(ofSize: textFontSize)])
-            statusAttributedText.append(NSAttributedString(string: character.status, attributes: [.font: UIFont.systemFont(ofSize: textFontSize)]))
-            
-            self.statusLabel.attributedText = statusAttributedText
-        } else {
-            self.statusLabel.isHidden = true
-        }
-        
-        if character.species != "" {
-            self.speciesLabel.isHidden = false
-            let specieAttributedText = NSMutableAttributedString(string: "Espécie: ", attributes: [.font: UIFont.boldSystemFont(ofSize: textFontSize)])
-            specieAttributedText.append(NSAttributedString(string: character.species, attributes: [.font: UIFont.systemFont(ofSize: textFontSize)]))
-            
-            self.speciesLabel.attributedText = specieAttributedText
-        } else {
-            self.speciesLabel.isHidden = true
-        }
-        
-        if character.type != "" {
-            self.typeLabel.isHidden = false
-            let typeAttributedText = NSMutableAttributedString(string: "Tipo: ", attributes: [.font: UIFont.boldSystemFont(ofSize: textFontSize)])
-            typeAttributedText.append(NSAttributedString(string: character.type, attributes: [.font: UIFont.systemFont(ofSize: textFontSize)]))
-            
-            self.typeLabel.attributedText = typeAttributedText
-        } else {
-            self.typeLabel.isHidden = true
-        }
+        setLabel(statusLabel, with: character.status, prefixText: "Status: ")
+        setLabel(speciesLabel, with: character.species, prefixText: "Specie: ")
+        setLabel(typeLabel, with: character.type, prefixText: "Type: ")
+        setLabel(genderLabel, with: character.gender, prefixText: "Gender: ")
+        setLabel(originLabel, with: character.origin.name, prefixText: "Origin: ")
+        setLabel(locationLabel, with: character.location.name, prefixText: "Location: ")
         
         self.imageView.setImage(URL(string: character.image))
         self.imageView.layer.cornerRadius = 15
@@ -107,6 +85,19 @@ final class DetailsViewController: UIViewController {
                 label.text = "\(episode.episode) - \(episode.name)"
                 self.episodesStackView.addArrangedSubview(label)
             }
+        }
+    }
+    
+    private func setLabel(_ label: UILabel, with text: String, prefixText: String) {
+        
+        if text != "" {
+            label.isHidden = false
+            let statusAttributedText = NSMutableAttributedString(string: prefixText, attributes: [.font: UIFont.boldSystemFont(ofSize: textFontSize)])
+            statusAttributedText.append(NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: textFontSize)]))
+            
+            label.attributedText = statusAttributedText
+        } else {
+            label.isHidden = true
         }
     }
     

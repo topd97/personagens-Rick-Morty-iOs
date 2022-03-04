@@ -14,6 +14,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var episodesView: UIView!
+    @IBOutlet weak var episodesStackView: UIStackView!
     
     // passar para o viewModel
     var character: RickMortyCharacter?
@@ -35,14 +37,56 @@ class DetailsViewController: UIViewController {
     
     private func setupView() {
         guard let character = character else { return }
+        
+        backButton.tintColor = .black
 
         nameLabel.text = character.name
-        statusLabel.text = character.status
-        speciesLabel.text = character.species
-        typeLabel.text = character.type
-
+        if character.status != "" {
+            statusLabel.isHidden = false
+            let statusAttributedText = NSMutableAttributedString(string: "Status: ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
+            statusAttributedText.append(NSAttributedString(string: character.status, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+            
+            statusLabel.attributedText = statusAttributedText
+        } else {
+            statusLabel.isHidden = true
+        }
+        
+        if character.species != "" {
+            speciesLabel.isHidden = false
+            let specieAttributedText = NSMutableAttributedString(string: "Espécie: ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
+            specieAttributedText.append(NSAttributedString(string: character.species, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+            
+            speciesLabel.attributedText = specieAttributedText
+        } else {
+            speciesLabel.isHidden = true
+        }
+        
+        if character.type != "" {
+            typeLabel.isHidden = false
+            let typeAttributedText = NSMutableAttributedString(string: "Tipo: ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
+            typeAttributedText.append(NSAttributedString(string: character.type, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+            
+            typeLabel.attributedText = typeAttributedText
+        } else {
+            typeLabel.isHidden = true
+        }
+        
         imageView.setImage(URL(string: character.image))
         imageView.layer.cornerRadius = 15
+        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderWidth = 2
+        
+        episodesView.layer.cornerRadius = 15
+        episodesView.layer.borderColor = UIColor.black.cgColor
+        episodesView.layer.borderWidth = 2
+        
+        for episode in character.episode {
+            Services.shared.getRickMortyEpisode(url: episode) { episode in
+                let label = UILabel()
+                label.text = "\(episode.episode) - \(episode.name)"
+                self.episodesStackView.addArrangedSubview(label)
+            }
+        }
     }
     
     @IBAction func onBackButton(_ sender: Any) {

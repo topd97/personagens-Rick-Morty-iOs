@@ -31,8 +31,28 @@ class Services {
             }
         }
     }
+    
+    func getRickMortyEpisode(url: String, _ completion: @escaping ((RickMortyEpisode) -> Void)) {
+        AF.request(
+            url,
+            method: .get
+        ).response { (response) in
+            guard let data = response.data else {
+                // TODO: Handle corner case
+                return
+            }
+            if let episode = try? JSONDecoder().decode(RickMortyEpisode.self, from: data) {
+                print("sucesso episodio")
+                completion(episode)
+            } else {
+                print("falha episodio")
+                // TODO: Handle corner case
+            }
+        }
+    }
 }
 
+// Personagens
 struct RequestResponse: Codable {
     let info: RequestResultInfo
     let results: [RickMortyCharacter]
@@ -68,4 +88,15 @@ struct RickMortyCharacterLocation: Codable {
 struct RickMortyCharacterOrigin: Codable {
     let name: String
     let url: String
+}
+
+// episodios
+struct RickMortyEpisode: Codable {
+    let id: Int
+    let name: String
+    let air_date: String
+    let episode: String
+    let characters: [String]
+    let url: String
+    let created: String
 }

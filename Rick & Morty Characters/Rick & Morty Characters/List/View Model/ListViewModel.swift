@@ -25,10 +25,10 @@ class ListViewModel {
         if !isUpdating {
             isUpdating = true
             Services.shared.getRickMortyCharacters(page: actualPage) { characters in
-                self.isUpdating = false
                 self.actualPage += 1
-                self.characters = characters
+                self.characters += characters
                 self.output.charactersHasLoad()
+                self.isUpdating = false
             }
         }
     }

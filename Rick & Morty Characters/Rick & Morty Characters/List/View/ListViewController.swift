@@ -17,7 +17,6 @@ class ListViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.viewModel = ListViewModel(output: self)
         displayLoading()
         viewModel.getCharacters()
@@ -57,19 +56,10 @@ class ListViewController: UICollectionViewController, UICollectionViewDelegateFl
                      willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         if viewModel.getCharactersCount() - 1 == indexPath.row {
-            displayLoading()
+            // Aqui poderia entrar uma loading, mas como a API retorna extremamente rápdio, o app ficou mais fluido sem o loading, apresentando uma performance boa
             viewModel.getCharacters()
         }
     }
-    
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let height = collectionView.frame.size.height
-//        let contentYoffset = collectionView.contentOffset.y
-//        let distanceFromBottom = collectionView.contentSize.height - contentYoffset
-//        if distanceFromBottom < height {
-//            print("[Thiago] you reached end of the table")
-//        }
-//    }
     
     func displayLoading() {
         loadingView.show(in: self.view, animated: true)
@@ -83,7 +73,9 @@ class ListViewController: UICollectionViewController, UICollectionViewDelegateFl
 // MARK: - ViewModel
 extension ListViewController: ListViewModelOutput {
     func charactersHasLoad() {
-        hideLoading()
+        if loadingView.isVisible {
+            hideLoading()
+        }
         collectionView.reloadData()
     }
 }

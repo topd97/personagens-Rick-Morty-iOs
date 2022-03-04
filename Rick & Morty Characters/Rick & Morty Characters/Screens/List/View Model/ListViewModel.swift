@@ -5,17 +5,15 @@
 //  Created by thiago.damasceno on 02/03/22.
 //
 
-import Foundation
-
 protocol ListViewModelOutput: AnyObject {
     func charactersHasLoad()
 }
 
-class ListViewModel {
+final class ListViewModel {
     private var characters: [RickMortyCharacter] = []
-    let output: ListViewModelOutput
-    var actualPage: Int = 1
-    var isUpdating = false
+    private let output: ListViewModelOutput
+    private var actualPage: Int = 1
+    private var isUpdating = false
     
     init(output: ListViewModelOutput) {
         self.output = output
@@ -24,9 +22,9 @@ class ListViewModel {
     func getCharacters() {
         if !isUpdating {
             isUpdating = true
-            Services.shared.getRickMortyCharacters(page: actualPage) { characters in
+            Task.init {
+                self.characters += try await RickMortyService.shared.getRickMortyCharacters(page: actualPage)
                 self.actualPage += 1
-                self.characters += characters
                 self.output.charactersHasLoad()
                 self.isUpdating = false
             }

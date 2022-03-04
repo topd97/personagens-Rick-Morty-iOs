@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharacterCollectionViewCell: UICollectionViewCell {
+final class CharacterCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var characterImage: UIImageView!
     @IBOutlet weak var characterLabel: UILabel!

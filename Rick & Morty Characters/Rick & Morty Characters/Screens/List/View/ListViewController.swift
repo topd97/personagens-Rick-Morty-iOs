@@ -5,11 +5,10 @@
 //  Created by thiago.damasceno on 02/03/22.
 //
 
-import Foundation
 import Alamofire
 import JGProgressHUD
 
-class ListViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class ListViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private lazy var viewModel = ListViewModel(output: self)
     
@@ -73,9 +72,11 @@ class ListViewController: UICollectionViewController, UICollectionViewDelegateFl
 // MARK: - ViewModel
 extension ListViewController: ListViewModelOutput {
     func charactersHasLoad() {
-        if loadingView.isVisible {
-            hideLoading()
+        DispatchQueue.main.async {
+            if self.loadingView.isVisible {
+                self.hideLoading()
+            }
+            self.collectionView.reloadData()
         }
-        collectionView.reloadData()
     }
 }

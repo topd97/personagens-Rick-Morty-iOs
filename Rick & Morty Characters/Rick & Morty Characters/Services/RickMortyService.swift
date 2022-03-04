@@ -6,7 +6,12 @@
 //
 import Alamofire
 
-class RickMortyService {
+protocol RickMortyServiceProtocol {
+    func getRickMortyCharacters(page: Int) async throws -> [RickMortyCharacter]
+    func getRickMortyEpisode(url: String) async throws -> RickMortyEpisode
+}
+
+class RickMortyService: RickMortyServiceProtocol {
     static let shared = RickMortyService()
     
     var baseUrl: String  { return "https://rickandmortyapi.com/api/" }

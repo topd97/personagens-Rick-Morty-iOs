@@ -46,12 +46,18 @@ final class DetailsViewController: UIViewController {
         guard let character = self.viewModel.getCharacter() else { return }
         
         self.backButton.tintColor = .black
+        self.backButton.configuration?.image = UIImage(systemName: "arrow.backward.circle")
+        
+        
+        
+        
+        let textFontSize: CGFloat = UIDevice.isPad() ? 32 : 14
 
         self.nameLabel.text = character.name
         if character.status != "" {
             self.statusLabel.isHidden = false
-            let statusAttributedText = NSMutableAttributedString(string: "Status: ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-            statusAttributedText.append(NSAttributedString(string: character.status, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+            let statusAttributedText = NSMutableAttributedString(string: "Status: ", attributes: [.font: UIFont.boldSystemFont(ofSize: textFontSize)])
+            statusAttributedText.append(NSAttributedString(string: character.status, attributes: [.font: UIFont.systemFont(ofSize: textFontSize)]))
             
             self.statusLabel.attributedText = statusAttributedText
         } else {
@@ -60,8 +66,8 @@ final class DetailsViewController: UIViewController {
         
         if character.species != "" {
             self.speciesLabel.isHidden = false
-            let specieAttributedText = NSMutableAttributedString(string: "Espécie: ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-            specieAttributedText.append(NSAttributedString(string: character.species, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+            let specieAttributedText = NSMutableAttributedString(string: "Espécie: ", attributes: [.font: UIFont.boldSystemFont(ofSize: textFontSize)])
+            specieAttributedText.append(NSAttributedString(string: character.species, attributes: [.font: UIFont.systemFont(ofSize: textFontSize)]))
             
             self.speciesLabel.attributedText = specieAttributedText
         } else {
@@ -70,8 +76,8 @@ final class DetailsViewController: UIViewController {
         
         if character.type != "" {
             self.typeLabel.isHidden = false
-            let typeAttributedText = NSMutableAttributedString(string: "Tipo: ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-            typeAttributedText.append(NSAttributedString(string: character.type, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
+            let typeAttributedText = NSMutableAttributedString(string: "Tipo: ", attributes: [.font: UIFont.boldSystemFont(ofSize: textFontSize)])
+            typeAttributedText.append(NSAttributedString(string: character.type, attributes: [.font: UIFont.systemFont(ofSize: textFontSize)]))
             
             self.typeLabel.attributedText = typeAttributedText
         } else {
@@ -90,6 +96,7 @@ final class DetailsViewController: UIViewController {
         let episodes = self.viewModel.getCharacterEpisodes()
         for episode in episodes {
             let label = UILabel()
+            label.font = UIFont.systemFont(ofSize: textFontSize)
             label.text = "\(episode.episode) - \(episode.name)"
             self.episodesStackView.addArrangedSubview(label)
         }

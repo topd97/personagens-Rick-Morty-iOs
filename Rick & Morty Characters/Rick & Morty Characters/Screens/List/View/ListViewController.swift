@@ -7,6 +7,7 @@
 
 import Alamofire
 import JGProgressHUD
+import CoreGraphics
 
 final class ListViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -38,24 +39,21 @@ final class ListViewController: UICollectionViewController, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let availableWidth = collectionView.layer.bounds.width
+        let numberOfCells: CGFloat = UIDevice.isPad() ? 4 : 2
+        let spacing: CGFloat = 12 * (numberOfCells - 1)
         
-        let width = (availableWidth - 12 ) / 2
+        let width = (availableWidth - spacing) / numberOfCells
         return CGSize(width: width, height: width)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Passar isso pra outro lugar
-        guard let selectedCharacter = viewModel.getCharacterFor(index: indexPath.row) else { return }
-        let vc = DetailsViewController(character: selectedCharacter)
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        viewModel.didTapItem(row: indexPath.row)
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                      willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         if viewModel.getCharactersCount() - 1 == indexPath.row {
-            // Aqui poderia entrar uma loading, mas como a API retorna extremamente rápdio, o app ficou mais fluido sem o loading, apresentando uma performance boa
             viewModel.getCharacters()
         }
     }
@@ -78,5 +76,13 @@ extension ListViewController: ListViewModelOutput {
             }
             self.collectionView.reloadData()
         }
+    }
+    
+    func characterNotLoad() {
+        // TODO: Adicionar alert pedindo para tentar novamente
+    }
+    
+    func present(vc: UIViewController) {
+        present(vc, animated: true, completion: nil)
     }
 }

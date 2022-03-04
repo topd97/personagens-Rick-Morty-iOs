@@ -5,30 +5,42 @@
 //  Created by thiago.damasceno on 02/03/22.
 //
 
+import UIKit
+
 protocol ListViewModelOutput: AnyObject {
     func charactersHasLoad()
+    func characterNotLoad()
+    func present(vc:UIViewController)
 }
 
 final class ListViewModel {
     private var characters: [RickMortyCharacter] = []
     private let output: ListViewModelOutput
     private var actualPage: Int = 1
-    private var isUpdating = false
+    private let service: RickMortyServiceProtocol
     
-    init(output: ListViewModelOutput) {
+    init(output: ListViewModelOutput, service: RickMortyServiceProtocol = RickMortyService.shared) {
         self.output = output
+        self.service = service
     }
     
     func getCharacters() {
-        if !isUpdating {
-            isUpdating = true
-            Task.init {
-                self.characters += try await RickMortyService.shared.getRickMortyCharacters(page: actualPage)
+        Task.init {
+            do {
+                self.characters += try await service.getRickMortyCharacters(page: actualPage)
                 self.actualPage += 1
                 self.output.charactersHasLoad()
-                self.isUpdating = false
+            } catch {
+                self.output.characterNotLoad()
             }
         }
+    }
+    
+    func didTapItem(row: Int) {
+        guard let selectedCharacter = getCharacterFor(index: row) else { return }
+        let vc = DetailsViewController(character: selectedCharacter)
+        vc.modalPresentationStyle = .fullScreen
+        output.present(vc: vc)
     }
     
     func getCharactersCount() -> Int {

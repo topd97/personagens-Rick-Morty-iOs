@@ -15,9 +15,9 @@ final class DetailsViewController: UIViewController {
     @IBOutlet weak var speciesLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var episodesView: UIView!
     @IBOutlet weak var episodesStackView: UIStackView!
+    @IBOutlet weak var backButtonImageView: UIImageView!
     
     let viewModel: DetailsViewModel
     
@@ -45,10 +45,11 @@ final class DetailsViewController: UIViewController {
     private func setupView() {
         guard let character = self.viewModel.getCharacter() else { return }
         
-        self.backButton.tintColor = .white
-        self.backButton.configuration?.image = UIImage(systemName: "arrow.backward.circle")
-        
-        
+        backButtonImageView.tintColor = .white
+        backButtonImageView.image = UIImage(systemName: "arrow.backward.circle")
+        let tapContainer = UITapGestureRecognizer(target: self, action: #selector(onBackButton))
+        backButtonImageView.isUserInteractionEnabled = true
+        backButtonImageView.addGestureRecognizer(tapContainer)
         
         
         let textFontSize: CGFloat = UIDevice.isPad() ? 32 : 14
@@ -109,7 +110,7 @@ final class DetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func onBackButton(_ sender: Any) {
+    @objc func onBackButton() {
         self.dismiss(animated: true, completion: nil)
     }
     

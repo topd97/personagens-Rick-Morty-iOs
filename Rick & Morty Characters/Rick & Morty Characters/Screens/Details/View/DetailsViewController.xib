@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="Rick___Morty_Characters" customModuleProvider="target">
             <connections>
-                <outlet property="backButton" destination="yG8-zm-fnG" id="Ah8-gL-uJB"/>
+                <outlet property="backButtonImageView" destination="26X-xp-Ns2" id="ya6-dc-snp"/>
                 <outlet property="episodesStackView" destination="jNU-A9-Z8V" id="jRt-ap-Eo2"/>
                 <outlet property="episodesView" destination="b6h-t6-o3V" id="Aie-jC-d7S"/>
                 <outlet property="imageView" destination="Y9e-b5-Gzg" id="YVJ-eQ-Yqq"/>
@@ -26,13 +26,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-b5-Gzg" userLabel="Image">
-                    <rect key="frame" x="205" y="63" width="614" height="614.5"/>
+                    <rect key="frame" x="205" y="84" width="614" height="614.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Y9e-b5-Gzg" secondAttribute="height" multiplier="1:1" id="nqn-4T-9uh"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwl-YC-PPn" userLabel="Name">
-                    <rect key="frame" x="50" y="693.5" width="924" height="100"/>
+                    <rect key="frame" x="50" y="714.5" width="924" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="HA0-gu-i8k"/>
                     </constraints>
@@ -44,7 +44,7 @@
                     </variation>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MRD-qO-fdC">
-                    <rect key="frame" x="48" y="809.5" width="928" height="393.5"/>
+                    <rect key="frame" x="48" y="830.5" width="928" height="393.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Espécie: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBd-dL-8ER" userLabel="Espécie">
                             <rect key="frame" x="0.0" y="0.0" width="928" height="38.5"/>
@@ -141,32 +141,33 @@
                         </view>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG8-zm-fnG">
-                    <rect key="frame" x="16" y="40" width="60" height="60"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="26X-xp-Ns2">
+                    <rect key="frame" x="32" y="56" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="32" id="ZwE-Co-l0E">
+                        <constraint firstAttribute="width" secondItem="26X-xp-Ns2" secondAttribute="height" multiplier="1:1" id="Vlb-Y5-4dA"/>
+                        <constraint firstAttribute="height" constant="32" id="jTk-Vk-1tN">
                             <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                         </constraint>
-                        <constraint firstAttribute="width" secondItem="yG8-zm-fnG" secondAttribute="height" multiplier="1:1" id="dET-hl-eZN"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain"/>
-                    <connections>
-                        <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="CaP-HY-msl"/>
-                    </connections>
-                </button>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.19" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="MRD-qO-fdC" firstAttribute="top" secondItem="Mwl-YC-PPn" secondAttribute="bottom" constant="16" id="1qL-m7-3JD"/>
-                <constraint firstItem="yG8-zm-fnG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="6k6-NM-z1h"/>
                 <constraint firstItem="Y9e-b5-Gzg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="8Yq-hn-Tfv"/>
-                <constraint firstItem="yG8-zm-fnG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="C9B-i0-lje"/>
+                <constraint firstItem="26X-xp-Ns2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="AAu-bK-c5m">
+                    <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                </constraint>
                 <constraint firstItem="Mwl-YC-PPn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="PxW-VI-qmd"/>
                 <constraint firstItem="Mwl-YC-PPn" firstAttribute="top" secondItem="Y9e-b5-Gzg" secondAttribute="bottom" constant="16" id="ReV-LH-DKZ"/>
                 <constraint firstItem="MRD-qO-fdC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="aYn-ZQ-Hac"/>
-                <constraint firstItem="Y9e-b5-Gzg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="39" id="j89-4P-FFk"/>
+                <constraint firstItem="26X-xp-Ns2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="blf-z5-EkO">
+                    <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                </constraint>
+                <constraint firstItem="Y9e-b5-Gzg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="j89-4P-FFk">
+                    <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                </constraint>
                 <constraint firstItem="Mwl-YC-PPn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="o4U-Z5-o6p"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MRD-qO-fdC" secondAttribute="trailing" constant="48" id="pLn-u6-MoB"/>
                 <constraint firstItem="Y9e-b5-Gzg" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.6" id="tXX-00-tBB"/>
